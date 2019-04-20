@@ -1,21 +1,24 @@
 let apple = {} 
 
-const convertCoordinates = (xC, yC) => {
+const convertCoordinates = (xC, yC) => { // modify like cC
     return `${yC}; ${xC}`
 }
 
 let snakeHead = {
-    length: 4,
+    len: 4,
     xCoordinate: 7,
     yCoordinate: 7,
     direction: 'R',
 }
 
 let osnkP = [{xCoordinate: 6, yCoordinate: 7}, {xCoordinate: 5, yCoordinate: 7}, {xCoordinate: 4, yCoordinate: 7}]
+
+function cC () {
 i = osnkP.length - 1
 while (i != -1) {
     osnkP[i].strlocation = convertCoordinates(osnkP[i].xCoordinate, osnkP[i].yCoordinate)
     i--
+}
 }
 
 snakeHead.strlocation = convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate)
@@ -54,7 +57,15 @@ const spawnSnake = () => {
 }
 
 function moveSnakeR () {
-    
+    for (i = 0; i < snakeHead.len - 2; i++) {
+        osnkP[i].xCoordinate = osnkP[i + 1].xCoordinate
+    }
+    osnkP[i].xCoordinate = snakeHead.xCoordinate
+    renderTiles()
+}
+
+function renderTiles() {
+
 }
 
 spawnApple()
