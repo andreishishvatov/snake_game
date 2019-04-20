@@ -1,17 +1,24 @@
-let apple = {}
-
-let snake = {
-    strlocation: '7; 7',
-    xCoordinate: 7,
-    yCoordinate: 7,
-    direction: 'R',
-    length: 4,
-}
+let apple = {} 
 
 const convertCoordinates = (xC, yC) => {
     return `${yC}; ${xC}`
 }
 
+let snakeHead = {
+    length: 4,
+    xCoordinate: 7,
+    yCoordinate: 7,
+    direction: 'R',
+}
+
+let osnkP = [{xCoordinate: 6, yCoordinate: 7}, {xCoordinate: 5, yCoordinate: 7}, {xCoordinate: 4, yCoordinate: 7}]
+i = osnkP.length - 1
+while (i != -1) {
+    osnkP[i].strlocation = convertCoordinates(osnkP[i].xCoordinate, osnkP[i].yCoordinate)
+    i--
+}
+
+snakeHead.strlocation = convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate)
 const spawnApple = () => {
     let check = []
     let x = Math.floor(Math.random() * 13 + 1) 
@@ -47,10 +54,7 @@ const spawnSnake = () => {
 }
 
 function moveSnakeR () {
-    document.getElementById(snake.strlocation).style.backgroundColor = 'green'
-    snake.xCoordinate = snake.xCoordinate + 1
-    snake.strlocation = convertCoordinates(snake.xCoordinate, snake.yCoordinate)
-    document.getElementById(snake.strlocation).style.backgroundColor = "blue"
+    
 }
 
 spawnApple()
