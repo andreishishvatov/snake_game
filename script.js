@@ -17,7 +17,7 @@ let snakeHead = {
 
 snakeHead.strlocation = convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate)
 
-let osnkP = [{xCoordinate: 6, yCoordinate: 7}, {xCoordinate: 5, yCoordinate: 7}, {xCoordinate: 4, yCoordinate: 7}]
+let osnkP = [{xCoordinate: 4, yCoordinate: 7}, {xCoordinate: 5, yCoordinate: 7}, {xCoordinate: 6, yCoordinate: 7}]
 
 snakeHead.strlocation = convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate)
 
@@ -55,19 +55,24 @@ const spawnSnake = () => {
     document.getElementById("7; 4").style.backgroundColor = 'blue'
 }
 
-function moveSnakeR () {
+function moveSnake () {
     for (i = 0; i < snakeHead.len - 2; i++) {
-        
         osnkP[i].xCoordinate = osnkP[i + 1].xCoordinate
         osnkP[i].yCoordinate = osnkP[i + 1].yCoordinate
         osnkP[i].strlocation = convertCoordinates(osnkP[i].xCoordinate, osnkP[i].yCoordinate)
     }
     osnkP[i].xCoordinate = snakeHead.xCoordinate
     osnkP[i].yCoordinate = snakeHead.yCoordinate
-    renderTiles()
+}
+
+function moveR() {
+    moveSnake()
+    snakeHead.xCoordinate = snakeHead.xCoordinate + 1
+    
+    // CHECK WITH CONSOLE
 }
 
 spawnApple()
 spawnSnake()
 
-setTimeout(moveSnakeR, 1000)
+setTimeout(moveR, 1000)
