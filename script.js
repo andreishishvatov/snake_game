@@ -72,7 +72,7 @@ function moveSnake () {
 }
 
 function moveR() {
-    if (snakeHead.xCoordinate != 13) { // if more game over
+    if (snakeHead.xCoordinate != 13 && document.getElementById(convertCoordinates(snakeHead.xCoordinate + 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue') { // if more game over
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate + 1
     renderTiles()
@@ -80,15 +80,15 @@ function moveR() {
 }
 
 function moveU() {
-    if (snakeHead.yCoordinate != 13) {
+    if (snakeHead.yCoordinate != 13 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate + 1)).style.backgroundColor != 'blue') {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate + 1
     renderTiles()
     }
 }
-
+                        // add AND gate 
 function moveD() {
-    if (snakeHead.yCoordinate != 1) {
+    if (snakeHead.yCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate - 1)).style.backgroundColor != 'blue') {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate - 1
     renderTiles()
@@ -96,7 +96,7 @@ function moveD() {
 }
 
 function moveL() {
-    if (snakeHead.xCoordinate != 1) {
+    if (snakeHead.xCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate - 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue') {
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate - 1
     renderTiles()
@@ -120,3 +120,5 @@ document.querySelector('body').addEventListener('keydown', event => {
         moveL()
     }
 })
+
+
