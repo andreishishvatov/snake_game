@@ -1,18 +1,22 @@
 let apple = {} 
 
-const convertCoordinates = (xC, yC) => { // modify like cC
+const convertCoordinates = (xC, yC) => {
     return `${yC}; ${xC}`
 }
 
 function renderTiles() {
-
+    for (i = 0; i < osnkP.length; i++) {
+        const id = convertCoordinates(osnkP[i].xCoordinate, osnkP[i].yCoordinate)
+        document.getElementById(id).style.backgroundColor = 'blue'
+    }
+    const hid = convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate)
+    document.getElementById(hid).style.backgroundColor = 'blue'
 }
 
 let snakeHead = {
     len: 4,
     xCoordinate: 7,
     yCoordinate: 7,
-    direction: 'R',
 }
 
 snakeHead.strlocation = convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate)
@@ -55,8 +59,10 @@ const spawnSnake = () => {
     document.getElementById("7; 4").style.backgroundColor = 'blue'
 }
 
-function moveSnake () {
+function moveSnake () { 
     for (i = 0; i < snakeHead.len - 2; i++) {
+        const id = convertCoordinates(osnkP[i].xCoordinate, osnkP[i].yCoordinate)
+        document.getElementById(id).style.backgroundColor = "green"
         osnkP[i].xCoordinate = osnkP[i + 1].xCoordinate
         osnkP[i].yCoordinate = osnkP[i + 1].yCoordinate
         osnkP[i].strlocation = convertCoordinates(osnkP[i].xCoordinate, osnkP[i].yCoordinate)
@@ -66,13 +72,26 @@ function moveSnake () {
 }
 
 function moveR() {
+    if (snakeHead.xCoordinate != 13) {
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate + 1
-    
-    // CHECK WITH CONSOLE
+    renderTiles()
+    }
+}
+
+function moveU() {
+    moveSnake()
+    snakeHead.yCoordinate = snakeHead.yCoordinate + 1
+    renderTiles()
+}
+
+function moveD() {
+    moveSnake()
+    snakeHead.yCoordinate = snakeHead.yCoordinate - 1
+    renderTiles()
 }
 
 spawnApple()
 spawnSnake()
 
-setTimeout(moveR, 1000)
+
