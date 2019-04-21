@@ -72,7 +72,7 @@ function moveSnake () {
 }
 
 function moveR() {
-    if (snakeHead.xCoordinate != 13) {
+    if (snakeHead.xCoordinate != 13) { // if more game over
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate + 1
     renderTiles()
@@ -80,18 +80,43 @@ function moveR() {
 }
 
 function moveU() {
+    if (snakeHead.yCoordinate != 13) {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate + 1
     renderTiles()
+    }
 }
 
 function moveD() {
+    if (snakeHead.yCoordinate != 1) {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate - 1
     renderTiles()
+    }
+}
+
+function moveL() {
+    if (snakeHead.xCoordinate != 1) {
+    moveSnake()
+    snakeHead.xCoordinate = snakeHead.xCoordinate - 1
+    renderTiles()
+    }
 }
 
 spawnApple()
 spawnSnake()
 
-
+document.querySelector('body').addEventListener('keydown', event => {
+    if (event.key === 'w'){
+        moveU()
+    }
+    else if (event.key === 'd') {
+        moveR()
+    }
+    else if (event.key === 's') {
+        moveD()
+    }
+    else if (event.key === 'a') {
+        moveL()
+    }
+})
