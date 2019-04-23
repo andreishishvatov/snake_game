@@ -17,8 +17,9 @@ let snakeHead = {
     len: 4,
     xCoordinate: 7,
     yCoordinate: 7,
-    
 }
+
+let spd = 200// setting speed
 
 snakeHead.strlocation = convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate)
 
@@ -77,6 +78,7 @@ function moveR() { //add if statements to specify conditions of moving
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate + 1
     renderTiles()
+    spd = spd - 0.2
     }
 }
 
@@ -85,6 +87,7 @@ function moveU() {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate + 1
     renderTiles()
+    spd = spd - 0.2
     }
 }
  
@@ -93,14 +96,16 @@ function moveD() {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate - 1
     renderTiles()
+    spd = spd - 0.2
     }
 }
 
 function moveL() {
-    if (snakeHead.yCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate - 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue') {
+    if (snakeHead.xCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate - 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue') {
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate - 1
     renderTiles()
+    spd = spd - 0.2
     }
 }
 
@@ -112,54 +117,105 @@ let intervalU
 let intervalL
 let intervalD
 
+const clrevthbR = () => {
+    clearInterval(intervalU)
+    clearInterval(intervalL)
+    clearInterval(intervalD)
+}
 
+const clrevthbL = () => {
+    clearInterval(intervalU)
+    clearInterval(intervalR)
+    clearInterval(intervalD)
+}
+
+const clrevthbD = () => {
+    clearInterval(intervalU)
+    clearInterval(intervalL)
+    clearInterval(intervalR)
+}
+
+const clrevthbU = () => {
+    clearInterval(intervalD)
+    clearInterval(intervalL)
+    clearInterval(intervalR)
+}
+
+let currentInterval
 
 const contMoveR = () => {
-    intervalR = setInterval(moveR, 400)
+    currentInterval = intervalR
+    intervalR = setInterval(moveR, spd) // speed increments by 1 (spd++)
 }
 
 const contMoveU = () => {
-    intervalU = setInterval(moveU, 400)
+    currentInterval = intervalU
+    intervalU = setInterval(moveU, spd)
 }
 
 const contMoveL = () => {
-    intervalL = setInterval(moveL, 400)
+    currentInterval = intervalL
+    intervalL = setInterval(moveL, spd)
 }
 
 const contMoveD = () => {
-    intervalR = setInterval(moveD, 400)
+    currentInterval = intervalD
+    intervalD = setInterval(moveD, spd)
 }
 
+let cooldown = 0
 
 
 document.querySelector('body').addEventListener('keydown', event => {
+    
     if (event.key === 'w'){
-        clearInterval(intervalR)
-        clearInterval(intervalL)
-        clearInterval(intervalD)
+        /*if (typeof currentInterval != 'undefined') {
+        clearInterval(currentInterval)
+        }*/
+        clrevthbU()
         contMoveU()
+        /*clearInterval(intervalR)
+        clearInterval(intervalL)
+        clearInterval(intervalD) */
+        //contMoveU()
     }
     else if (event.key === 'd') {
-        clearInterval(intervalU)
-        clearInterval(intervalL)
-        clearInterval(intervalD)
+        /*if (typeof currentInterval != 'undefined') {
+        clearInterval(currentInterval)
+        }*/
+        clrevthbR()
         contMoveR()
+        /*clearInterval(intervalU)
+        clearInterval(intervalL)
+        clearInterval(intervalD)*/
+        //contMoveR()
     }
     else if (event.key === 's') {
-        clearInterval(intervalR)
-        clearInterval(intervalL)
-        clearInterval(intervalU)
+        /*if (typeof currentInterval != 'undefined') {
+        clearInterval(currentInterval)
+        }*/
+        clrevthbD()
         contMoveD()
+        /*clearInterval(intervalR)
+        clearInterval(intervalL)
+        clearInterval(intervalU)*/
+        //contMoveD()
     }
     else if (event.key === 'a') {
-        clearInterval(intervalR)
-        clearInterval(intervalU)
-        clearInterval(intervalD)
+        /*if (typeof currentInterval != 'undefined') {
+        clearInterval(currentInterval)
+        }*/
+        clrevthbL()
         contMoveL()
-    }
+        /*clearInterval(intervalR)
+        clearInterval(intervalU)
+        clearInterval(intervalD)*/
+        //contMoveL()
+    
+}
 })
 
-contMoveR()
+
 
 // if (snakeHead.xCoordinate === 13 || document.getElementById(convertCoordinates(snakeHead.xCoordinate + 1, snakeHead.yCoordinate)).style.backgroundColor === 'blue') {
 //    clearInterval(interval)
