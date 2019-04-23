@@ -47,6 +47,7 @@ const spawnApple = () => {
         check.push(false)
     }
     }
+    apple.id = id
     apple.xCoordinate = x
     apple.yCoordinate = y 
     const randomTile = document.getElementById(id)
@@ -79,6 +80,10 @@ function moveR() { //add if statements to specify conditions of moving
     snakeHead.xCoordinate = snakeHead.xCoordinate + 1
     renderTiles()
     spd = spd - 0.2
+    if (document.getElementById(apple.id).style.backgroundColor === 'blue') {
+        
+        spawnApple()
+    }
     }
 }
 
@@ -88,6 +93,10 @@ function moveU() {
     snakeHead.yCoordinate = snakeHead.yCoordinate + 1
     renderTiles()
     spd = spd - 0.2
+    if (document.getElementById(apple.id).style.backgroundColor === 'blue') {
+
+        spawnApple()
+    }
     }
 }
  
@@ -97,6 +106,10 @@ function moveD() {
     snakeHead.yCoordinate = snakeHead.yCoordinate - 1
     renderTiles()
     spd = spd - 0.2
+    if (document.getElementById(apple.id).style.backgroundColor === 'blue') {
+        
+        spawnApple()
+    }
     }
 }
 
@@ -106,6 +119,10 @@ function moveL() {
     snakeHead.xCoordinate = snakeHead.xCoordinate - 1
     renderTiles()
     spd = spd - 0.2
+    if (document.getElementById(apple.id).style.backgroundColor === 'blue') {
+        
+        spawnApple()
+    }
     }
 }
 
