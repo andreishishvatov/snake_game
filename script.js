@@ -72,91 +72,96 @@ function moveSnake () {
     osnkP[i].yCoordinate = snakeHead.yCoordinate
 }
 
-function moveR() {
+function moveR() { //add if statements to specify conditions of moving
+    if (snakeHead.xCoordinate != 13 && document.getElementById(convertCoordinates(snakeHead.xCoordinate + 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue') {
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate + 1
     renderTiles()
+    }
 }
 
 function moveU() {
+    if (snakeHead.yCoordinate != 13 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate + 1)).style.backgroundColor != 'blue') {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate + 1
     renderTiles()
+    }
 }
  
 function moveD() {
+    if (snakeHead.yCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate - 1)).style.backgroundColor != 'blue') {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate - 1
     renderTiles()
+    }
 }
 
 function moveL() {
+    if (snakeHead.yCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate - 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue') {
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate - 1
     renderTiles()
+    }
 }
 
 spawnApple()
 spawnSnake()
  
-
+let intervalR
+let intervalU
+let intervalL
+let intervalD
 
 
 
 const contMoveR = () => {
-    let j = snakeHead.yCoordinate
-    if (j1 != ) {
-    setInterval(moveR, 1000)
-    }
+    intervalR = setInterval(moveR, 400)
 }
 
 const contMoveU = () => {
-    let i2 = 400
-    let j2 = snakeHead.yCoordinate
-    while(j2 != 13 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate + 1)).style.backgroundColor != 'blue') {
-    setTimeout(moveU, i2)
-    i2 = i2 + 400 + 1
-    j2++
-    }
+    intervalU = setInterval(moveU, 400)
 }
 
 const contMoveL = () => {
-    let i3 = 400
-    let j3 = snakeHead.xCoordinate
-    while(j3 != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate - 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue') {
-    setTimeout(moveL, i3)
-    i3 = i3 + 400 + 1
-    j3++
-    }
+    intervalL = setInterval(moveL, 400)
 }
 
 const contMoveD = () => {
-    let i4 = 400
-    let j4 = snakeHead.yCoordinate
-    while(j4 != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate - 1)).style.backgroundColor != 'blue') {
-    setTimeout(moveD, i4)
-    i4 = i4 + 400 + 1
-    j4++
-    }
+    intervalR = setInterval(moveD, 400)
 }
 
 
 
 document.querySelector('body').addEventListener('keydown', event => {
     if (event.key === 'w'){
+        clearInterval(intervalR)
+        clearInterval(intervalL)
+        clearInterval(intervalD)
         contMoveU()
     }
     else if (event.key === 'd') {
+        clearInterval(intervalU)
+        clearInterval(intervalL)
+        clearInterval(intervalD)
         contMoveR()
     }
     else if (event.key === 's') {
+        clearInterval(intervalR)
+        clearInterval(intervalL)
+        clearInterval(intervalU)
         contMoveD()
     }
     else if (event.key === 'a') {
+        clearInterval(intervalR)
+        clearInterval(intervalU)
+        clearInterval(intervalD)
         contMoveL()
     }
 })
 
-
-
 contMoveR()
+
+// if (snakeHead.xCoordinate === 13 || document.getElementById(convertCoordinates(snakeHead.xCoordinate + 1, snakeHead.yCoordinate)).style.backgroundColor === 'blue') {
+//    clearInterval(interval)
+//    console.log('hey')
+// }
