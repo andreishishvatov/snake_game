@@ -1,5 +1,5 @@
 let apple = {} 
-
+let gg = []
 const convertCoordinates = (xC, yC) => {
     return `${yC}; ${xC}`
 }
@@ -81,7 +81,7 @@ function moveSnake () {
 }
 
 function moveR() { //add if statements to specify conditions of moving
-    if (snakeHead.xCoordinate != 13 && document.getElementById(convertCoordinates(snakeHead.xCoordinate + 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue') {
+    if (snakeHead.xCoordinate != 13 && document.getElementById(convertCoordinates(snakeHead.xCoordinate + 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue' && gg[0] === undefined) {
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate + 1
     renderTiles()
@@ -90,12 +90,16 @@ function moveR() { //add if statements to specify conditions of moving
         snakeHead.len++
         osnkP.unshift({xCoordinate: lastTileX, yCoordinate: lastTileY})
         spawnApple()
+        document.getElementById('count').innerHTML++
     }
+    } else {
+        gg[0] = true
+        document.querySelector('.gameover').style.display = 'block'
     }
 }
 
 function moveU() {
-    if (snakeHead.yCoordinate != 13 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate + 1)).style.backgroundColor != 'blue') {
+    if (snakeHead.yCoordinate != 13 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate + 1)).style.backgroundColor != 'blue' && gg[0] === undefined) {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate + 1
     renderTiles()
@@ -104,12 +108,16 @@ function moveU() {
         snakeHead.len++
         osnkP.unshift({xCoordinate: lastTileX, yCoordinate: lastTileY})
         spawnApple()
+        document.getElementById('count').innerHTML++
     }
+    } else {
+        gg[0] = true
+        document.querySelector('.gameover').style.display = 'block'
     }
 }
  
 function moveD() {
-    if (snakeHead.yCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate - 1)).style.backgroundColor != 'blue') {
+    if (snakeHead.yCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate - 1)).style.backgroundColor != 'blue' && gg[0] === undefined) {
     moveSnake()
     snakeHead.yCoordinate = snakeHead.yCoordinate - 1
     renderTiles()
@@ -118,12 +126,16 @@ function moveD() {
         snakeHead.len++
         osnkP.unshift({xCoordinate: lastTileX, yCoordinate: lastTileY})
         spawnApple()
+        document.getElementById('count').innerHTML++
     }
+    } else {
+        gg[0] = true
+        document.querySelector('.gameover').style.display = 'block'
     }
 }
 
 function moveL() {
-    if (snakeHead.xCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate - 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue') {
+    if (snakeHead.xCoordinate != 1 && document.getElementById(convertCoordinates(snakeHead.xCoordinate - 1, snakeHead.yCoordinate)).style.backgroundColor != 'blue' && gg[0] === undefined) {
     moveSnake()
     snakeHead.xCoordinate = snakeHead.xCoordinate - 1
     renderTiles()
@@ -132,7 +144,11 @@ function moveL() {
         snakeHead.len++
         osnkP.unshift({xCoordinate: lastTileX, yCoordinate: lastTileY})
         spawnApple()
+        document.getElementById('count').innerHTML++
     }
+    } else {
+        gg[0] = true
+        document.querySelector('.gameover').style.display = 'block'
     }
 }
 
