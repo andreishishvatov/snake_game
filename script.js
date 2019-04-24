@@ -19,11 +19,17 @@ let snakeHead = {
     yCoordinate: 7,
 }
 
-let spd = 200// setting speed
+let spd = 150// setting speed
 
 snakeHead.strlocation = convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate)
 
 let osnkP = [{xCoordinate: 4, yCoordinate: 7}, {xCoordinate: 5, yCoordinate: 7}, {xCoordinate: 6, yCoordinate: 7}]
+
+let lastTileX = osnkP[0].xCoordinate
+let lastTileY = osnkP[0].yCoordinate
+
+/*snakeHead.len++
+osnkP.unshift({xCoordinate: lastTileX, yCoordinate: lastTileY}) // Code to implement (I suspect it is operationa;) */
 
 snakeHead.strlocation = convertCoordinates(snakeHead.xCoordinate, snakeHead.yCoordinate)
 
@@ -81,7 +87,8 @@ function moveR() { //add if statements to specify conditions of moving
     renderTiles()
     spd = spd - 0.2
     if (document.getElementById(apple.id).style.backgroundColor === 'blue') {
-        
+        snakeHead.len++
+        osnkP.unshift({xCoordinate: lastTileX, yCoordinate: lastTileY})
         spawnApple()
     }
     }
@@ -94,7 +101,8 @@ function moveU() {
     renderTiles()
     spd = spd - 0.2
     if (document.getElementById(apple.id).style.backgroundColor === 'blue') {
-
+        snakeHead.len++
+        osnkP.unshift({xCoordinate: lastTileX, yCoordinate: lastTileY})
         spawnApple()
     }
     }
@@ -107,7 +115,8 @@ function moveD() {
     renderTiles()
     spd = spd - 0.2
     if (document.getElementById(apple.id).style.backgroundColor === 'blue') {
-        
+        snakeHead.len++
+        osnkP.unshift({xCoordinate: lastTileX, yCoordinate: lastTileY})
         spawnApple()
     }
     }
@@ -120,7 +129,8 @@ function moveL() {
     renderTiles()
     spd = spd - 0.2
     if (document.getElementById(apple.id).style.backgroundColor === 'blue') {
-        
+        snakeHead.len++
+        osnkP.unshift({xCoordinate: lastTileX, yCoordinate: lastTileY})
         spawnApple()
     }
     }
