@@ -38,7 +38,7 @@ const spawnApple = () => {
     let x = Math.floor(Math.random() * 13 + 1) 
     let y = Math.floor(Math.random() * 13 + 1)
     let id = `${x}; ${y}` 
-    if (id === '7; 7' || id === '7; 6' || id === '7; 5' || id === '7; 4') {
+    if (document.getElementById(id).style.backgroundColor === 'blue') {
         check.push(true)
     }
     else {
@@ -71,7 +71,7 @@ const spawnSnake = () => {
 function moveSnake () { 
     for (i = 0; i < snakeHead.len - 2; i++) {
         const id = convertCoordinates(osnkP[i].xCoordinate, osnkP[i].yCoordinate)
-        document.getElementById(id).style.backgroundColor = "green"
+        document.getElementById(id).style.backgroundColor = "purple"
         osnkP[i].xCoordinate = osnkP[i + 1].xCoordinate
         osnkP[i].yCoordinate = osnkP[i + 1].yCoordinate
         osnkP[i].strlocation = convertCoordinates(osnkP[i].xCoordinate, osnkP[i].yCoordinate)
