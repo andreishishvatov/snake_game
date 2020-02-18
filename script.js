@@ -228,6 +228,7 @@ document.querySelector('body').addEventListener('keydown', event => {
         }*/
         clrevthbR()
         contMoveR()
+        console.log(event.toString())
         /*clearInterval(intervalU)
         clearInterval(intervalL)
         clearInterval(intervalD)*/
@@ -257,6 +258,7 @@ document.querySelector('body').addEventListener('keydown', event => {
     
 }
 })
+
 
 
 
